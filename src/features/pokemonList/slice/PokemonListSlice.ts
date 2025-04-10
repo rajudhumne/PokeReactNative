@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RootState} from '../../../stores/store';
+import {RootState} from '../../../redux/store';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {IPokemonListResponseModel} from '../model/pokemonModel';
 

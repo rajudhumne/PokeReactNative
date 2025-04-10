@@ -1,4 +1,4 @@
-import {store} from '../../../stores/store';
+import {store} from '../../../redux/store';
 import {stopLoader, triggerAppLoader} from '../slice/AppLoaderSlice';
 
 export const LoaderOnApiResponse = () => {

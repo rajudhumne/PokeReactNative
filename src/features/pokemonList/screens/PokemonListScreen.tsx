@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch} from '../../../stores/store';
+import {AppDispatch} from '../../../redux/store';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {IPokemonListResponseModel} from '../model/pokemonModel';
 import {pokemonData} from '../slice/PokemonListSlice';

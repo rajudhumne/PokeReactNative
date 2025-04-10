@@ -8,7 +8,7 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import NavigationHandler from './src/navigations/navigationHandler';
-import {store} from './src/stores/store';
+import {store} from './src/redux/store';
 
 function App(): React.JSX.Element {
   return (

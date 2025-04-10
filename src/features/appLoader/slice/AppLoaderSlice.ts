@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {RootState} from '../../../stores/store';
+import {RootState} from '../../../redux/store';
 import {IAppLoaderModel} from '../model/AppLoaderModel';
 
 const initialState: IAppLoaderModel = {
