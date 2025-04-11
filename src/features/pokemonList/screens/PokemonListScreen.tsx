@@ -1,11 +1,10 @@
-// src/screens/PokemonListScreen.js
-
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useCallback, useEffect, useState} from 'react';
-import {ActivityIndicator, TextInput, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PokemonCard from '../../../components/card/PokemonCard';
+import CustomSearchBar from '../../../components/searchBar/CustomSearchBar';
 import {AppDispatch} from '../../../redux/store';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {
@@ -16,7 +15,6 @@ import {
 import {PokemonListStyles as styles} from '../styles/pokemonListStyles';
 
 function PokemonListScreen() {
-  // const flatListRef = useRef<FlatList>(null);
   const pokemonList: IPokemonState = useSelector(pokemonData);
   const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch<AppDispatch>();
@@ -55,9 +53,8 @@ function PokemonListScreen() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search Pokemon"
+      <CustomSearchBar
+        placeholder="What Pokémon are you looking for?"
         value={searchText}
         onChangeText={handleTextInputChange}
       />
