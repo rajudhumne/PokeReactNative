@@ -5,10 +5,11 @@ import {getPokemonListEndPoint} from '../utility/pokemonUtility';
 
 export const fetchAllPokemons = createAsyncThunk(
   'actions/fetchAllPokemons',
-  async () => {
+  async (url?: string) => {
+    const unWrappedUrl = url || getPokemonListEndPoint(IPokemonEndpoints.list);
     const promise = await API.get({
-      endPoint: getPokemonListEndPoint(IPokemonEndpoints.list),
-      isLoader: true,
+      endPoint: unWrappedUrl,
+      isLoader: false,
     });
     const response = await promise;
     console.log(response);

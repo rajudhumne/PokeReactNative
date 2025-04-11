@@ -1,4 +1,5 @@
 import {Text, View} from 'react-native';
+import {PokemonCardStyles as styles} from './PokemonCardStyles';
 
 interface IPokemonCardProps {
   name: string;
@@ -6,8 +7,8 @@ interface IPokemonCardProps {
 
 function PokemonCard({name}: IPokemonCardProps) {
   return (
-    <View>
-      <Text>{name}</Text>
+    <View style={styles.itemContainer}>
+      <Text style={styles.itemText}>{name}</Text>
     </View>
   );
 }
