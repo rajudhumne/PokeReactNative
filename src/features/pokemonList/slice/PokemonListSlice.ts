@@ -26,16 +26,21 @@ const pokemonSlice = createSlice({
   initialState,
   reducers: {
     setSearchQuery(state, action: PayloadAction<string>) {
-      // Update filtered results based on the current search query
-      state.filteredResults = Array.from(
-        new Map(
-          state.results
-            .filter(pokemon =>
-              pokemon.name.toLowerCase().includes(action.payload.toLowerCase()),
-            )
-            .map(pokemon => [pokemon.name, pokemon]), // Use the name as a unique key
-        ).values(),
-      );
+      if (action.payload) {
+        console.log('Text is present in text input');
+
+        state.filteredResults = state.results.filter(pokemon => {
+          pokemon.name.toLowerCase() === action.payload.toLowerCase();
+
+          const itemData = pokemon.name.toLowerCase();
+          const textData = action.payload.toLowerCase();
+          return itemData.indexOf(textData) > -1;
+        });
+        console.log(state.filteredResults);
+      } else {
+        console.log('Text is not present in text input');
+        state.filteredResults = state.results;
+      }
     },
   },
   extraReducers: builder => {

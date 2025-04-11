@@ -2,18 +2,23 @@
 
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ActivityIndicator, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PokemonCard from '../../../components/card/PokemonCard';
 import {AppDispatch} from '../../../redux/store';
 import {fetchAllPokemons} from '../action/pokemonActions';
-import {IPokemonState, pokemonData} from '../slice/PokemonListSlice';
+import {
+  IPokemonState,
+  pokemonData,
+  setSearchQuery,
+} from '../slice/PokemonListSlice';
 import {PokemonListStyles as styles} from '../styles/pokemonListStyles';
 
 function PokemonListScreen() {
   // const flatListRef = useRef<FlatList>(null);
   const pokemonList: IPokemonState = useSelector(pokemonData);
+  const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation();
 
@@ -25,10 +30,19 @@ function PokemonListScreen() {
   }, [dispatch, pokemonList]);
 
   const handleLoadMore = () => {
+    console.log('HandleLoadMore fucntions called');
+    if (searchText) {
+      return;
+    }
     dispatch(fetchAllPokemons(pokemonList.next));
   };
 
-  const handleEdit = useCallback(
+  const handleTextInputChange = (query: string) => {
+    setSearchText(query);
+    dispatch(setSearchQuery(query));
+  };
+
+  const handleNavigation = useCallback(
     (url: string = '') => {
       navigation.navigate('PokemonDetails', {url});
     },
@@ -41,13 +55,23 @@ function PokemonListScreen() {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.searchInput} placeholder="Search Pokemon" />
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search Pokemon"
+        value={searchText}
+        onChangeText={handleTextInputChange}
+      />
       <FlashList
         data={pokemonList.filteredResults}
         contentContainerStyle={styles.listContainer}
         keyExtractor={(item, index) => item.name + index}
         renderItem={({item}) => (
-          <PokemonCard name={item.name} sprite={item.sprite} />
+          <PokemonCard
+            name={item.name}
+            sprite={item.sprite}
+            url={item.url}
+            onTap={url => handleNavigation(url)}
+          />
         )}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.5}
