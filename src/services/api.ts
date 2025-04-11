@@ -14,7 +14,10 @@ const API = {
     const url = serviceProps.endPoint;
 
     try {
-      // TriggerLoader(); // Show loader before API call
+      if (serviceProps.isLoader) {
+        TriggerLoader(); // Show loader before API call
+      }
+
       const response = await fetch(url, {method: 'GET'});
       const json = await response.json();
       // Since api gives fast response

@@ -8,6 +8,7 @@ export interface IPokemonListResponseModel {
 export interface IPokemonSummary {
   name: string;
   url: string;
+  sprite: string;
 }
 
 export enum IPokemonEndpoints {

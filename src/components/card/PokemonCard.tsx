@@ -1,14 +1,16 @@
-import {Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import {PokemonCardStyles as styles} from './PokemonCardStyles';
 
 interface IPokemonCardProps {
   name: string;
+  sprite: string;
 }
 
-function PokemonCard({name}: IPokemonCardProps) {
+function PokemonCard({name, sprite}: IPokemonCardProps) {
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>{name}</Text>
+    <View style={styles.card}>
+      <Image source={{uri: sprite}} style={styles.cardImage} />
+      <Text style={styles.cardName}>{name.toUpperCase()}</Text>
     </View>
   );
 }
