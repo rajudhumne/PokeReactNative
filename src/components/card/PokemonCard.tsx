@@ -3,20 +3,23 @@ import {PokemonCardStyles as styles} from './PokemonCardStyles';
 
 interface IPokemonCardProps {
   name: string;
-  url: string;
   sprite: string;
-  onTap: (url: string) => void;
+  index: number;
+  onTap: (id: number) => void;
 }
 
-function PokemonCard({name, sprite, url, onTap}: IPokemonCardProps) {
+function PokemonCard({name, sprite, index, onTap}: IPokemonCardProps) {
   return (
     <Pressable
       onPress={() => {
-        onTap(url);
+        onTap(index + 1);
       }}>
       <View style={styles.card}>
         <Image source={{uri: sprite}} style={styles.cardImage} />
-        <Text style={styles.cardName}>{name.toUpperCase()}</Text>
+        <View>
+          <Text style={styles.cardNumber}>#{index + 1}</Text>
+          <Text style={styles.cardName}>{name.toUpperCase()}</Text>
+        </View>
       </View>
     </Pressable>
   );

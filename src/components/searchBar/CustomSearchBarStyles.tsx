@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {textColor} from '../../assets/colors/colors';
 
 export const SearchBarStyles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ export const SearchBarStyles = StyleSheet.create({
     marginRight: 15,
     marginBlock: 15,
     height: 60,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: textColor.white,
     padding: 20,
     borderWidth: 1,
     borderRadius: 10,
@@ -23,7 +24,5 @@ export const SearchBarStyles = StyleSheet.create({
   textInput: {
     height: '100%',
     width: '90%',
-    backgroundColor: '#F2F2F2',
-    color: '#424242',
   },
 });

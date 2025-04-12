@@ -12,6 +12,7 @@ export interface IPokemonSummary {
 }
 
 export enum IPokemonEndpoints {
-  list = 'pokemon',
-  details = 'pokemon/{id}',
+  list,
+  species,
+  details,
 }

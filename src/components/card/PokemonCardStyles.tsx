@@ -29,4 +29,10 @@ export const PokemonCardStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
+  cardNumber: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
 });

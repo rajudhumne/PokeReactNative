@@ -5,6 +5,7 @@ import {ActivityIndicator, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PokemonCard from '../../../components/card/PokemonCard';
 import CustomSearchBar from '../../../components/searchBar/CustomSearchBar';
+import Spinner from '../../../components/Spinner';
 import {AppDispatch} from '../../../redux/store';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {
@@ -12,7 +13,7 @@ import {
   pokemonData,
   setSearchQuery,
 } from '../slice/PokemonListSlice';
-import {PokemonListStyles as styles} from '../styles/pokemonListStyles';
+import {PokemonListStyles as styles} from '../styles/PokemonListStyles';
 
 function PokemonListScreen() {
   const pokemonList: IPokemonState = useSelector(pokemonData);
@@ -41,8 +42,8 @@ function PokemonListScreen() {
   };
 
   const handleNavigation = useCallback(
-    (url: string = '') => {
-      navigation.navigate('PokemonDetails', {url});
+    (id: number) => {
+      navigation.navigate('PokemonDetails', {id});
     },
     [navigation],
   );
@@ -61,22 +62,19 @@ function PokemonListScreen() {
       <FlashList
         data={pokemonList.filteredResults}
         contentContainerStyle={styles.listContainer}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => item.name + index}
-        renderItem={({item}) => (
+        renderItem={({item, index}) => (
           <PokemonCard
             name={item.name}
             sprite={item.sprite}
-            url={item.url}
-            onTap={url => handleNavigation(url)}
+            index={index}
+            onTap={id => handleNavigation(id)}
           />
         )}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.5}
-        ListFooterComponent={
-          pokemonList.loading ? (
-            <ActivityIndicator size="large" color="#3498db" />
-          ) : null
-        }
+        ListFooterComponent={<Spinner />}
       />
     </View>
   );

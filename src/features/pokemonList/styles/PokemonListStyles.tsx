@@ -1,9 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {textColor} from '../../../assets/colors/colors';
 
 export const PokemonListStyles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22,
+    backgroundColor: textColor.white,
   },
   listContainer: {
     padding: 10,

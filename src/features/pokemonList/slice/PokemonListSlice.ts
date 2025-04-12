@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../../redux/store';
+import {pokemonSprite} from '../../../services/config';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {
   IPokemonListResponseModel,
@@ -59,7 +60,7 @@ const pokemonSlice = createSlice({
               const id = index + 1 + state.results.length; // Calculate ID based on current offset
               return {
                 ...pokemon,
-                sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+                sprite: `${pokemonSprite}/${id}.png`,
               };
             },
           );
