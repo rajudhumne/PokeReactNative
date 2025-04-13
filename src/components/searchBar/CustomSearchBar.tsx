@@ -1,5 +1,6 @@
 import {Image, TextInput, View} from 'react-native';
 import {colors} from '../../assets/colors/colorPalette';
+import RESOURCES from '../../assets/utility/resourceManager';
 import {SearchBarStyles as styles} from './CustomSearchBarStyles';
 
 interface ISearchBarProps {
@@ -11,10 +12,7 @@ interface ISearchBarProps {
 function CustomSearchBar({placeholder, onChangeText, value}: ISearchBarProps) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require('../../assets/images/searchIcon.png')}
-      />
+      <Image style={styles.image} source={RESOURCES.commonImages.searchIcon} />
       <TextInput
         placeholder={placeholder}
         style={styles.textInput}

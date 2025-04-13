@@ -61,11 +61,11 @@ function PokemonListScreen() {
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => item.name + index}
-        renderItem={({item, index}) => (
+        renderItem={({item}) => (
           <PokemonCard
             name={item.name}
             sprite={item.sprite}
-            index={index}
+            url={item.url}
             onTap={id => handleNavigation(item.name, id)}
           />
         )}
