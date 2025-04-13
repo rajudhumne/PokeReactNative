@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useCallback, useEffect, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {ActivityIndicator, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {colors} from '../../../assets/colors/colorPalette';
 import PokemonCard from '../../../components/card/PokemonCard';
 import CustomSearchBar from '../../../components/searchBar/CustomSearchBar';
 import Spinner from '../../../components/spinner/Spinner';
@@ -45,7 +46,7 @@ function PokemonListScreen() {
   );
 
   if (pokemonList.loading) {
-    <ActivityIndicator size="large" color="#3498db" />;
+    <ActivityIndicator size="large" color={colors.green} />;
   }
 
   return (
@@ -55,12 +56,14 @@ function PokemonListScreen() {
         value={searchText}
         onChangeText={handleTextInputChange}
       />
+
       <FlashList
         data={pokemonList.filteredResults}
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => item.name + index}
         estimatedItemSize={120}
+        refreshing={pokemonList.loading}
         renderItem={({item}) => (
           <PokemonCard
             name={item.name}

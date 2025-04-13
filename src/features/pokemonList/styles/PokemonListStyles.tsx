@@ -10,7 +10,6 @@ export const PokemonListStyles = StyleSheet.create({
   listContainer: {
     padding: 10,
     backgroundColor: 'white',
-    height: '100%',
   },
   item: {
     padding: 10,

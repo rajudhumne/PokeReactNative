@@ -10,6 +10,8 @@ interface ISearchBarProps {
 }
 
 function CustomSearchBar({placeholder, onChangeText, value}: ISearchBarProps) {
+  console.log('Custome Search Bar');
+  console.log(colors.gray);
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={RESOURCES.commonImages.searchIcon} />
