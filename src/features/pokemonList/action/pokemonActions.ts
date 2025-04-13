@@ -13,7 +13,6 @@ export const fetchAllPokemons = createAsyncThunk(
       isLoader: false,
     });
     const response = await promise;
-    console.log(response);
     return response;
   },
 );

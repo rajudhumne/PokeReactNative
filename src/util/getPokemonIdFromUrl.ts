@@ -1,5 +1,7 @@
 export default function getPokemonIdFromUrl(url: string): string {
-  if (!url) return getRandomIdAsString(); // Radom
+  if (!url) {
+    return getRandomIdAsString();
+  }
   const parts = url.split('/').filter(Boolean); // removes empty strings
   return parts[parts.length - 1]; // last part is the ID
 }

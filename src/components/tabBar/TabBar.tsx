@@ -1,8 +1,8 @@
 import React from 'react';
 import {Pressable, Text, View} from 'react-native';
-import {TabBarStyles as styles} from './TabBarStyles';
+import {ColorVariant} from '../../assets/colors/colorPalette';
 import {TabKey} from '../../features/pokemonDetails/screen/PokemonDetails';
-import {ColorVariant} from '../../assets/colorPalette/colorPalette';
+import {TabBarStyles as styles} from './TabBarStyles';
 
 interface ITabBar {
   tabs: readonly TabKey[];
@@ -35,12 +35,6 @@ function TabBar(props: ITabBar) {
                   {item}
                 </Text>
               </Pressable>
-              {/* <View
-                style={[
-                  styles.currentTabLine,
-                  isSelected ? {backgroundColor: props.tabColor} : {height: 0},
-                ]}
-              /> */}
             </View>
           );
         })}

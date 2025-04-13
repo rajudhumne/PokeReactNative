@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import {colors} from '../assets/colors/colorPalette';
 import PokemonDetails, {
   RootStackParamList,
 } from '../features/pokemonDetails/screen/PokemonDetails';
@@ -15,9 +16,9 @@ const NavigationHandler = () => {
         initialRouteName="Pokédex"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: colors.white,
           },
-          headerTintColor: '#17171B',
+          headerTintColor: colors.text,
           headerTitleStyle: {
             fontWeight: 'bold',
             fontSize: 20,

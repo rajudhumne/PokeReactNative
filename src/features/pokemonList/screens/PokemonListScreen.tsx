@@ -26,7 +26,6 @@ function PokemonListScreen() {
   }, [dispatch]);
 
   const handleLoadMore = () => {
-    console.log('HandleLoadMore fucntions called');
     if (searchText || pokemonList.results.length === 0) {
       return;
     }
@@ -61,6 +60,7 @@ function PokemonListScreen() {
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => item.name + index}
+        estimatedItemSize={120}
         renderItem={({item}) => (
           <PokemonCard
             name={item.name}
