@@ -25,6 +25,7 @@ type PokemonDetailsProps = NativeStackScreenProps<
 
 function PokemonDetails({route}: PokemonDetailsProps) {
   const dispatch = useDispatch<AppDispatch>();
+  const pokemonDetails: IPokemonDetailsState = useSelector(onPokemonDetailLoad);
 
   useEffect(() => {
     // Fetching User from API
@@ -33,7 +34,7 @@ function PokemonDetails({route}: PokemonDetailsProps) {
   return (
     <View style={styles.container}>
       <View style={styles.profileCard} />
-      <Text>{route.params.id}</Text>
+      <Text>{pokemonDetails.about?.height}</Text>
     </View>
   );
 }
