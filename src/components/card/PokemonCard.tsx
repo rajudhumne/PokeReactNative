@@ -9,6 +9,7 @@ interface IPokemonCardProps {
 }
 
 function PokemonCard({name, sprite, index, onTap}: IPokemonCardProps) {
+  console.log(sprite);
   return (
     <Pressable
       onPress={() => {

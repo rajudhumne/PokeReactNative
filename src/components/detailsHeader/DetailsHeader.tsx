@@ -1,13 +1,13 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 
-import {DetailsHeaderStyles as styles} from './DetailsHeaderStyles';
-import {IPokemonDetails} from '../../features/pokemonDetails/model/pokemonDetailsModel';
 import RESOURCES from '../../assets/utility/resourceManager';
+import {IPokemonDetails} from '../../features/pokemonDetails/model/pokemonDetailsModel';
+import {DetailsHeaderStyles as styles} from './DetailsHeaderStyles';
 
-import capitalizeFirstLetter from '../../utility/capitalizeFirstLetter';
-import {getTypeColorPalette} from '../../assets/colorPalette/colorPalette';
+import {getTypeColorPalette} from '../../assets/colors/colorPalette';
+import capitalizeFirstLetter from '../../util/capitalizeFirstLetter';
 
 function DetailsHeader({
   pokemonData,

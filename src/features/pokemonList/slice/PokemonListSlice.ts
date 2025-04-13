@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../../redux/store';
 import {pokemonSprite} from '../../../services/config';
+import getPokemonIdFromUrl from '../../../util/getPokemonIdFromUrl';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {
   IPokemonListResponseModel,
@@ -29,7 +30,7 @@ const pokemonSlice = createSlice({
     setSearchQuery(state, action: PayloadAction<string>) {
       if (action.payload) {
         console.log('Text is present in text input');
-
+        state.filteredResults = [];
         state.filteredResults = state.results.filter(pokemon => {
           pokemon.name.toLowerCase() === action.payload.toLowerCase();
 
@@ -55,16 +56,14 @@ const pokemonSlice = createSlice({
           state.previous = action.payload.previous;
 
           // Add sprite URLs to Pokémon results
-          const updatedResults = action.payload.results.map(
-            (pokemon, index) => {
-              const id = index + 1 + state.results.length; // Calculate ID based on current offset
-              return {
-                ...pokemon,
-                sprite: `${pokemonSprite}/${id}.png`,
-              };
-            },
-          );
-
+          const updatedResults = action.payload.results.map(pokemon => {
+            const id = getPokemonIdFromUrl(pokemon.url);
+            return {
+              ...pokemon,
+              sprite: `${pokemonSprite}/${id}.png`,
+            };
+          });
+          console.log(state.results);
           state.results = [...state.results, ...updatedResults];
           state.filteredResults = state.results;
         },

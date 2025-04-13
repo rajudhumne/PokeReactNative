@@ -1,10 +1,10 @@
 import React, {useMemo} from 'react';
 import {Text, View} from 'react-native';
-import {AboutPokemonStyles as styles} from './AboutPokemonStyles';
 import {IPokemonDetails} from '../../features/pokemonDetails/model/pokemonDetailsModel';
-import {calculateHeight, calculateWeight} from '../../utility/unitConverter';
-import removeLineBreaks from '../../utility/removeLineBreaks';
-import capitalizeFirstLetter from '../../utility/capitalizeFirstLetter';
+import capitalizeFirstLetter from '../../util/capitalizeFirstLetter';
+import removeLineBreaks from '../../util/removeLineBreaks';
+import {calculateHeight, calculateWeight} from '../../util/unitConverter';
+import {AboutPokemonStyles as styles} from './AboutPokemonStyles';
 
 export const AboutPokemon = ({
   pokemonData,

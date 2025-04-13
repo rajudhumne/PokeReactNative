@@ -5,7 +5,7 @@ import {ActivityIndicator, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PokemonCard from '../../../components/card/PokemonCard';
 import CustomSearchBar from '../../../components/searchBar/CustomSearchBar';
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/spinner/Spinner';
 import {AppDispatch} from '../../../redux/store';
 import {fetchAllPokemons} from '../action/pokemonActions';
 import {
@@ -22,15 +22,12 @@ function PokemonListScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // Fetching User from API
-    if (pokemonList.results.length === 0) {
-      dispatch(fetchAllPokemons());
-    }
-  }, [dispatch, pokemonList]);
+    dispatch(fetchAllPokemons());
+  }, [dispatch]);
 
   const handleLoadMore = () => {
     console.log('HandleLoadMore fucntions called');
-    if (searchText) {
+    if (searchText || pokemonList.results.length === 0) {
       return;
     }
     dispatch(fetchAllPokemons(pokemonList.next));
@@ -42,8 +39,8 @@ function PokemonListScreen() {
   };
 
   const handleNavigation = useCallback(
-    (id: number) => {
-      navigation.navigate('PokemonDetails', {id});
+    (name: string = '', index: number = 999) => {
+      navigation.navigate('PokemonDetails', {name, index});
     },
     [navigation],
   );
@@ -69,12 +66,12 @@ function PokemonListScreen() {
             name={item.name}
             sprite={item.sprite}
             index={index}
-            onTap={id => handleNavigation(id)}
+            onTap={id => handleNavigation(item.name, id)}
           />
         )}
         onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={<Spinner />}
+        onEndReachedThreshold={0.4}
+        ListFooterComponent={pokemonList.loading ? <Spinner /> : <></>}
       />
     </View>
   );

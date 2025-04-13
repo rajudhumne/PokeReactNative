@@ -1,8 +1,8 @@
 import React from 'react';
 import {DimensionValue, Text, View} from 'react-native';
 
+import {colors} from '../../assets/colors/colorPalette';
 import {StatsTabStyles as styles} from './StatsTabStyles';
-import {colors} from '../../assets/colorPalette/colorPalette';
 
 type StatProps = {
   name: string;

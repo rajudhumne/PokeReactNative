@@ -24,7 +24,11 @@ const NavigationHandler = () => {
           },
         }}>
         <Stack.Screen name="Pokédex" component={PokemonListScreen} />
-        <Stack.Screen name="PokemonDetails" component={PokemonDetails} />
+        <Stack.Screen
+          name="PokemonDetails"
+          component={PokemonDetails}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

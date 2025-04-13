@@ -3,15 +3,15 @@ import {IPokemonEndpoints} from '../model/pokemonModel';
 
 export function getPokemonListEndPoint(
   apiType: IPokemonEndpoints,
-  id?: number,
+  name: string,
 ) {
   switch (apiType) {
     case IPokemonEndpoints.list:
       return `${baseUrl}/pokemon`;
     case IPokemonEndpoints.details:
-      return `${baseUrl}/pokemon/${id}`;
+      return `${baseUrl}/pokemon/${name}`;
     case IPokemonEndpoints.species:
-      return `${baseUrl}/pokemon-species/${id}`;
+      return `${baseUrl}/pokemon-species/${name}`;
     default:
       return '';
   }

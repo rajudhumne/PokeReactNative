@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../assets/colorPalette/colorPalette';
+import {colors} from '../../assets/colors/colorPalette';
 
 export const StatsTabStyles = StyleSheet.create({
   statsTabContainer: {

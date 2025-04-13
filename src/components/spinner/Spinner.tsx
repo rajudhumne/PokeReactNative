@@ -1,5 +1,5 @@
 import {ActivityIndicator, View} from 'react-native';
-import {colors} from '../assets/colors/colors';
+import {colors} from '../../assets/colors/colorPalette';
 
 function Spinner() {
   return (
