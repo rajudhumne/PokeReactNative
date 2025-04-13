@@ -27,7 +27,9 @@ export type RootStackParamList = {
 
 type PokemonDetailsRouteProp = RouteProp<RootStackParamList, 'PokemonDetails'>;
 
+// Define tab keys and their type
 const tabs = ['About', 'Base Stats'] as const;
+
 export type TabKey = (typeof tabs)[number];
 
 function PokemonDetails() {
@@ -42,6 +44,7 @@ function PokemonDetails() {
     useState<IPokemonSpeciesModel | null>(null);
   const [currentTab, setCurrentTab] = useState<TabKey>('About');
 
+  // Fetch data when component mounts
   useEffect(() => {
     const name = route.params?.name ?? '';
 
@@ -62,6 +65,7 @@ function PokemonDetails() {
     }
   }, [dispatch, route.params?.name]);
 
+  // Get primary Pokémon type and derive the color palette
   const type = pokemonData?.types?.[0]?.type?.name ?? '';
   const colorVariant = getTypeColorPalette(type);
 

@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useCallback, useEffect, useState} from 'react';
-import {ActivityIndicator, TextInput, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {colors} from '../../../assets/colors/colorPalette';
 import PokemonCard from '../../../components/card/PokemonCard';
@@ -17,27 +17,43 @@ import {
 import {PokemonListStyles as styles} from '../styles/PokemonListStyles';
 
 function PokemonListScreen() {
+  // Redux state and dispatch setup
   const pokemonList: IPokemonState = useSelector(pokemonData);
-  const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation();
 
+  // Local state for search text
+  const [searchText, setSearchText] = useState('');
+
+  // Fetch Pokémon list on component mount
   useEffect(() => {
     dispatch(fetchAllPokemons());
   }, [dispatch]);
 
+  /**
+   * Handles loading more Pokémon when user scrolls to the bottom of the list.
+   * Prevents further fetching if search text is present or results are empty.
+   */
   const handleLoadMore = () => {
     if (searchText || pokemonList.results.length === 0) {
-      return;
+      return; // Do not load more if searching or no results available
     }
-    dispatch(fetchAllPokemons(pokemonList.next));
+    dispatch(fetchAllPokemons(pokemonList.next)); // Fetch next page of results
   };
 
+  /**
+   * Updates the search text and filters Pokémon results.
+   * @param {string} query - The search query entered by the user.
+   */
   const handleTextInputChange = (query: string) => {
-    setSearchText(query);
-    dispatch(setSearchQuery(query));
+    setSearchText(query); // Update local state
+    dispatch(setSearchQuery(query)); // Update Redux state
   };
-
+  /**
+   * Handles navigation to the Pokémon details screen.
+   * @param {string} name - The name of the selected Pokémon.
+   * @param {number} index - The index of the selected Pokémon.
+   */
   const handleNavigation = useCallback(
     (name: string = '', index: number = 999) => {
       navigation.navigate('PokemonDetails', {name, index});

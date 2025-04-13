@@ -9,9 +9,16 @@ import PokemonListScreen from '../features/pokemonList/screens/PokemonListScreen
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+/**
+ * NavigationHandler Component
+ *
+ * This component manages the app's navigation stack using React Navigation.
+ * It defines the navigation container and stack screens for the Pokédex application.
+ */
 const NavigationHandler = () => {
   return (
     <NavigationContainer>
+      {/* Stack Navigator: Manages navigation between screens */}
       <Stack.Navigator
         initialRouteName="Pokédex"
         screenOptions={{
@@ -24,7 +31,9 @@ const NavigationHandler = () => {
             fontSize: 20,
           },
         }}>
+        {/* Define the main screen (Pokédex) */}
         <Stack.Screen name="Pokédex" component={PokemonListScreen} />
+        {/* Define the details screen with a hidden header */}
         <Stack.Screen
           name="PokemonDetails"
           component={PokemonDetails}

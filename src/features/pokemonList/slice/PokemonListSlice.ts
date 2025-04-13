@@ -8,6 +8,10 @@ import {
   IPokemonSummary,
 } from '../model/pokemonModel';
 
+/**
+ * Define the structure of the Pokémon state managed by this slice.
+ * Extends IPokemonListResponseModel to include additional properties.
+ */
 export interface IPokemonState extends IPokemonListResponseModel {
   searchQuery: string;
   filteredResults: IPokemonSummary[];
@@ -27,6 +31,11 @@ const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
   reducers: {
+    /**
+     * Updates the search query and filters the results based on the query.
+     * @param {IPokemonState} state - The current state.
+     * @param {PayloadAction<string>} action - The search query entered by the user.
+     */
     setSearchQuery(state, action: PayloadAction<string>) {
       if (action.payload) {
         state.filteredResults = [];
@@ -35,15 +44,16 @@ const pokemonSlice = createSlice({
 
           const itemData = pokemon.name.toLowerCase();
           const textData = action.payload.toLowerCase();
-          return itemData.indexOf(textData) > -1;
+          return itemData.indexOf(textData) > -1; // Check if query matches the Pokémon name
         });
       } else {
-        state.filteredResults = state.results;
+        state.filteredResults = state.results; // Reset to all results if query is empty
       }
     },
   },
   extraReducers: builder => {
     builder
+      // Handle successful fetch of Pokémon data
       .addCase(
         fetchAllPokemons.fulfilled,
         (state, action: PayloadAction<IPokemonListResponseModel>) => {
@@ -75,6 +85,7 @@ const pokemonSlice = createSlice({
   },
 });
 
+// Export actions and selector
 export const {setSearchQuery} = pokemonSlice.actions;
 export const pokemonData = (state: RootState) => state.pokemon;
 export default pokemonSlice.reducer;
